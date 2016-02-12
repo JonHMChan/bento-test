@@ -1,6 +1,9 @@
 html {
   margin: 0;
   padding: 0; }
+  html nav .wrapper {
+    width: 800px;
+    margin: 0 auto; }
   html .sidebar {
     height: 100%;
     width: 250px; }

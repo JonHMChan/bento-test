@@ -1,6 +1,14 @@
+$wrapper: 800px;
+
 html {
 	margin: 0;
 	padding: 0;
+	nav {
+		.wrapper {
+			width: $wrapper;
+			margin: 0 auto;
+		}
+	}
 	.sidebar {
 		height: 100%;
 		width: 250px;
