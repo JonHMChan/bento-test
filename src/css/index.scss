@@ -1,20 +1,20 @@
 html {
 	margin: 0;
 	padding: 0;
-}
-.main-bg {
-	display:flex;
-	width: 100%
 	.sidebar {
-		height:100%;
-		width:250px;
+		height: 100%;
+		width: 250px;
 	}
-	content.main {
-		flex-grow:1
+	.main-bg {
+		display: flex;
+		width: 100%;
+		.main {
+			flex-grow: 1;
+			.colored-box {
+				background-color: #00ff00;
+				width: 200px;
+				height: 200px;
+			}
+		}
 	}
-}
-.colored-box {
-	background-color: #00ff00;
-	width: 200px;
-	height: 200px;
 }
