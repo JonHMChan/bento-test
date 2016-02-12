@@ -3,8 +3,16 @@ $wrapper: 800px;
 html {
 	margin: 0;
 	padding: 0;
+	body {
+		margin: 0;
+		padding: 0;
+	}
 	nav {
+		position: fixed;
+		width: 100%;
+		background: rgba(255,255,255,0.9);
 		.wrapper {
+			padding: 15px 0;
 			width: $wrapper;
 			margin: 0 auto;
 		}

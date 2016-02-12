@@ -1,9 +1,17 @@
 html {
   margin: 0;
   padding: 0; }
-  html nav .wrapper {
-    width: 800px;
-    margin: 0 auto; }
+  html body {
+    margin: 0;
+    padding: 0; }
+  html nav {
+    position: fixed;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9); }
+    html nav .wrapper {
+      padding: 15px 0;
+      width: 800px;
+      margin: 0 auto; }
   html .sidebar {
     height: 100%;
     width: 250px; }
@@ -11,10 +19,15 @@ html {
     display: flex;
     width: 100%; }
     html .main-bg .main {
-      flex-grow: 1; }
+      flex-grow: 1;
+      width: 100%; }
       html .main-bg .main .colored-box {
         background-color: #00ff00;
-        width: 200px;
-        height: 200px; }
+        width: 20%;
+        float: left;
+        border: 1px;
+        height: 0;
+        padding-bottom: 20%;
+        box-sizing: border-box; }
 
 /*# sourceMappingURL=index.css.map */
