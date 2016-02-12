@@ -18,10 +18,15 @@ html {
 		width: 100%;
 		.main {
 			flex-grow: 1;
+			width: 100%;
 			.colored-box {
 				background-color: #00ff00;
-				width: 200px;
-				height: 200px;
+		    width: 20%;
+		    float: left;
+		    border: 1px;
+		    height: 0;
+		    padding-bottom: 20%;
+		    box-sizing: border-box;
 			}
 		}
 	}
