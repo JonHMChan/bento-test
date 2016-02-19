@@ -1,7 +1,11 @@
 (function(grid) {
+
+	var gridMapping = {};
+
 	for (var key in grid) {
 		var topic = grid[key];
-		var html = '<div class="' + topic["tags"][0] + ' colored-box" data-name="' + topic.name + '" data-related="' + topic.after + '" >';
+		gridMapping[topic.name] = topic;
+		var html = '<div class="' + topic["tags"][0] + ' colored-box" id="' + topic.name + '">';
 		html += '<h2><a class="title" href="/"' + topic["home"] + '"" title="Show full page">' + topic["name"] + '</a><h2>';
 		html += '<h3>' + topic["description"] + '</h3>'
 		// add loop through links array here
@@ -31,15 +35,13 @@
 
 	$(".colored-box").click(function(e){
 		// go through colored boxes and check if a data-name is contained in array
-		var relatedItems = $(this).data('related');
-		var categoryName = $(this).data('name');
-		var boxName;
-		$(".colored-box").each(function(box){
-			// check array and data-name attr
-			boxName = $(this).data('name')
-			if ( relatedItems.indexOf(boxName) == -1 ) {
-				$(box).addClass('inactive');
-			}
-		})
+		var categoryName = $(this).attr("id");
+		var gridObject = gridMapping[categoryName];
+		$(".colored-box").addClass("inactive");
+		$(this).removeClass("inactive");
+		for (var key in gridObject.after) {
+			var relatedName = gridObject.after[key];
+			$("#" + relatedName).removeClass("inactive")
+		}
 	})
 })(grid)

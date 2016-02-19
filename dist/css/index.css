@@ -89,6 +89,8 @@ html {
         box-sizing: border-box;
         text-align: center;
         font-size: 0.9em; }
+        html .main-bg .main .colored-box.inactive {
+          background: #ccc; }
         html .main-bg .main .colored-box a.title {
           text-decoration: underline;
           color: rgba(51, 51, 51, 0.8);
