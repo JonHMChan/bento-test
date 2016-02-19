@@ -1,25 +1,99 @@
-$wrapper: 800px;
+$wrapper: 940px;
 
 html {
 	margin: 0;
 	padding: 0;
+	font-family: sans-serif;
 	body {
 		margin: 0;
 		padding: 0;
+		&>#container {
+			position: absolute;
+			top: 50px;
+		}
 	}
 	nav {
 		position: fixed;
 		width: 100%;
 		background: rgba(255,255,255,0.9);
+		z-index: 1;
 		.wrapper {
-			padding: 15px 0;
+			padding: 9px 0;
 			width: $wrapper;
 			margin: 0 auto;
+			.nav-header {
+				float: left;
+				a.logo-holder {
+					padding: 7px 20px;
+					font-weight: 300;
+					font-size: 23px;
+					line-height: 25px;
+					color: #777;
+					text-decoration: none;
+					img {
+						width: 40px;
+						margin-top: -5px;
+						vertical-align: middle;
+					}
+				}
+			}
+			.nav-container {
+				ul.nav-list {
+					float: left;
+					list-style: none;
+			    padding-left: 0;
+					li {
+						float: left;
+				    padding: 0 20px;
+				    margin-top: -8px;
+				    color: #777;
+				    font-weight: 400;
+				    font-size: 0.9em;
+						span.down-arrow {
+							border-top: 4px solid;
+							border-left: 4px solid transparent;
+							border-right: 4px solid transparent;
+							display: inline-block;
+							vertical-align: middle;
+							margin-left: 3px;
+						}
+						&.dropdown {
+							position: relative;
+							display: block;
+						}
+						.dropdown-menu {
+							position: absolute;
+					    top: 150%;
+					    left: 0;
+					    min-width: 190px;
+					    padding: 10px 0;
+					    margin: 2px 0 0;
+							// display: none
+					    list-style: none;
+					    background-color: #fff;
+					    border: 1px solid rgba(0,0,0,.15);
+					    border-radius: 4px;
+					    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+					    background-clip: padding-box;
+					    line-height: 1.5;
+							&.open {
+								display: block;
+							}
+							li {
+								a {
+									display: block;
+							    padding: 10px 0;
+							    font-weight: 400;
+							    color: #777;
+							    text-decoration: none;
+							    text-align: left;
+								}
+							}
+						}
+					}
+				}
+			}
 		}
-	}
-	.sidebar {
-		height: 100%;
-		width: 250px;
 	}
 	.main-bg {
 		display: flex;
@@ -28,14 +102,108 @@ html {
 			flex-grow: 1;
 			width: 100%;
 			.colored-box {
-				background-color: #00ff00;
-		    width: 20%;
-		    float: left;
-		    border: 1px;
-		    height: 0;
-		    padding-bottom: 20%;
-		    box-sizing: border-box;
+				width: 25%;
+				float: left;
+				border: 1px solid #fff;
+				height: 0;
+				padding-bottom: 25%;
+				box-sizing: border-box;
+				text-align: center;
+				font-size: 0.9em;
+				a.title {
+					text-decoration: underline;
+					color: rgba(51, 51, 51, 0.8);
+					font-size: 0.8em;
+					font-weight: 700;
+				}
+				h2 {
+					margin: 10px;
+				}
+				h3 {
+					font-size: 0.9em;
+					font-weight: 200;
+				}
+				p {
+					margin: 5px;
+					a {
+						font-weight: bold;
+						color: #fff;
+						text-decoration: underline;
+						line-height: 1.3em;;
+						font-size: 0.8em;
+					}
+				}
 			}
 		}
 	}
+	.sidebar {
+		height: 100%;
+    min-width: 250px;
+    width: 25%;
+    padding: 10px;
+    font-size: 0.8em;
+    line-height: 1.4;
+    letter-spacing: 0.1px;
+    color: #555;
+		h2.header {
+			padding: 0px;
+			margin: 0px;
+			font-weight: 300;
+			font-size: 3em;
+		}
+		p.description {
+	    padding-bottom: 15px;
+		}
+		ul.category-options {
+			list-style: none;
+			padding: 0px;
+			li {
+				padding: 3px 10px;
+				font-size: 14px;
+				font-weight: 300;
+				div.checkbox {
+					display: inline-block;
+			    width: 15px;
+			    height: 15px;
+			    margin: 0;
+					input[type=checkbox] {
+						width: 15px;
+						height: 15px;
+						margin: 0;
+						background: none;
+						opacity: 0;
+					}
+				}
+				label {
+					display: inline-block;
+					margin-bottom: 5px;
+					&.active {
+						font-weight: bold
+					}
+				}
+			}
+		}
+	}
+
+}
+.foundational {
+	background-color: #11BD11;
+}
+.frontend {
+	background: #FF6140;
+}
+.backend {
+	background: #0776A0;
+}
+.database {
+	background: #00B945;
+}
+.bridge, .ide {
+	background: #FFB600;
+}
+.api {
+    background: #a26edc;
+}
+.mobile {
+    background: #ff9a40;
 }
