@@ -5,8 +5,12 @@
 		html += '<h2><a class="title" href="/"' + topic["home"] + '"" title="Show full page">' + topic["name"] + '</a><h2>';
 		html += '<h3>' + topic["description"] + '</h3>'
 		// add loop through links array here
+		var count = 0;
 		topic.links.forEach((link) => {
-			html += '<p><a href="' + link["url"] + '" alt="' + link["name"] + ' target="_blank">' + link["name"] + '</a></p>'
+			if (count < 2 && link.level === 0) {
+				count++;
+				html += '<p><a href="' + link["url"] + '" alt="' + link["name"] + ' target="_blank">' + link["name"] + '</a></p>'
+			}
 		})
 		// end loop here
 		html += "</div>"
