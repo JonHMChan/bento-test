@@ -1,10 +1,13 @@
 (function(grid) {
+	resizeBoxes();
 
-	var gridMapping = {};
-
+	var gridMapping = {}, descriptions = {};
+	var tagMapping = {}
 	for (var key in grid) {
 		var topic = grid[key];
 		gridMapping[topic.name] = topic;
+		descriptions[topic.name] = {name: topic.name, content: content[key] ? content[key].description : "" }
+
 		var html = '<div class="' + topic["tags"][0] + ' colored-box" id="' + topic.name + '">';
 		html += '<h2><a class="title" href="/"' + topic["home"] + '"" title="Show full page">' + topic["name"] + '</a><h2>';
 		html += '<h3>' + topic["description"] + '</h3>'
@@ -34,14 +37,78 @@
 	})
 
 	$(".colored-box").click(function(e){
-		// go through colored boxes and check if a data-name is contained in array
 		var categoryName = $(this).attr("id");
 		var gridObject = gridMapping[categoryName];
 		$(".colored-box").addClass("inactive");
 		$(this).removeClass("inactive");
-		for (var key in gridObject.after) {
-			var relatedName = gridObject.after[key];
-			$("#" + relatedName).removeClass("inactive")
-		}
+		// sidebar's own
+		if ($(".more-info.show").length == 0) { $(".more-info").addClass("show"); }
+		$(".sidebar #title").html(categoryName)
+		// sidebar finish
+		appendBeforeRelations(gridObject, categoryName);
+		appendAfterRelations(gridObject, categoryName)
+
 	})
+
+	$(".checkbox").click(function(){
+		$(this).toggleClass("active")
+	})
+
+	$("#dismiss").click(function(){
+		$(".more-info").removeClass("show");
+	})
+
+	$( window ).resize(function() {
+		resizeBoxes();
+	});
+
+	function resizeBoxes() {
+		var window_width = window.innerWidth;
+		if (window_width > 1200) {
+			$(".colored-box").css('width', '20%');
+			$(".colored-box").css('padding-bottom', '20%');
+		} else if (window_width > 960 && window_width < 1200) {
+			var w = 100 / 3
+			$(".colored-box").css('width', `${w}%`);
+		} else if (window_width > 500 && window_width < 960)  {
+			$(".colored-box").css('width', '50%');
+		} else if (window_width < 500) {
+			$(".colored-box").css('width', '100%');
+		}
+	}
+
+	function appendBeforeRelations(gridObject, categoryName) {
+		if (gridObject.before.length > 0) {
+			if ($("#before-relations.show").length > 0) { $(".more-info").addClass("show"); }
+			$("#before-relations").html("");
+			$("#before-relations-relations").append("<h3>What to learn first</h3><article id='after'>")
+			for (var key in gridObject.after) {
+				var relatedName = gridObject.after[key];
+				$("#" + relatedName).removeClass("inactive")
+				$("#before-relations").append(`<a class='relation after option'><p><strong>${relatedName}</strong></p>`)
+				$("#before-relations").append(`<p>${descriptions[categoryName].content}</p>`)
+				$("#before-relations").append("</a></article>")
+			}
+		} else {
+			$("#before-relations").removeClass("show")
+		}
+		$("#before-relations").append("</article>")
+	}
+
+	function appendAfterRelations(gridObject, categoryName) {
+		if (gridObject.after.length > 0) {
+			if ($("#after-relations.show").length > 0) { $(".more-info").addClass("show"); }
+			$("#after-relations").html("");
+			$("#after-relations").append("<h3>What to learn next</h3><article id='after'>")
+			for (var key in gridObject.after) {
+				var relatedName = gridObject.after[key];
+				$("#" + relatedName).removeClass("inactive")
+				$("#after-relations").append(`<a class='relation after option'><p><strong>${relatedName}</strong></p><p>${descriptions[relatedName].content}</p>`)
+				$("#after-relations").append("</a>")
+			}
+		} else {
+			$("#after-relations").removeClass("show")
+		}
+		$("#after-relations").append("</article>")
+	}
 })(grid)
