@@ -56,11 +56,30 @@
 
 	$("#dismiss").click(function(){
 		$(".more-info").removeClass("show");
+		$(".colored-box.inactive").removeClass("inactive hide");
+		$("#unrelated").prop("checked", false);
 	})
 
 	$( window ).resize(function() {
 		resizeBoxes();
 	});
+
+	$(".checkbox").click(function() {
+		// toggle the active class
+		// if checked, get the category name from id,
+		// for every tag class, add the hide class
+		// else, for every tag class, add the hide class
+		$(this).toggleClass("active")
+		var id = $(".checkbox input").id
+	})
+	$("#unrelated").click(function(){
+		debugger;
+		if ($(this).is(':checked')) {
+			$(".colored-box.inactive").addClass("hide");
+		} else {
+			$(".colored-box.inactive").removeClass("hide");
+		}
+	})
 
 	function resizeBoxes() {
 		var window_width = window.innerWidth;
