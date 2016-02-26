@@ -64,14 +64,22 @@
 		resizeBoxes();
 	});
 
-	$(".checkbox").click(function() {
-		// toggle the active class
-		// if checked, get the category name from id,
-		// for every tag class, add the hide class
-		// else, for every tag class, add the hide class
-		$(this).toggleClass("active")
-		var id = $(".checkbox input").id
-	})
+
+	$(".checkbox").click(showCategories);
+
+	function showCategories() {
+		$(".category-options input[type=checkbox]").each(function() {
+			if ($(this).prop("checked")) {
+				$(".colored-box." + $(this).attr("class")).removeClass("hide")
+				$("label[for=" + $(this).attr("id") + "]").css("font-weight", "bold")
+			} else {
+				$(".colored-box." + $(this).attr("class")).addClass("hide")
+				$("label[for=" + $(this).attr("id") + "]").css("font-weight", "normal")
+			}
+		})
+	}
+
+
 	$("#unrelated").click(function(){
 		debugger;
 		if ($(this).is(':checked')) {
